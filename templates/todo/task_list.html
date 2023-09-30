@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="task-container">
+    {% for task in task_list %}
+      <div class="task-card">
+        <form action="" method=post>
+          {% csrf_token %}
+          <input class="checkbox-flip"
+                 type="checkbox"
+                 id="check{{ forloop.counter }}"
+                 onclick="this.form.submit()" />
+          <label for="check{{ forloop.counter }}">
+            <span></span>{{ task.title }}
+          </label>
+        </form>
+      </div>
+    {% endfor %}
+  </div>
+{% endblock content %}
+

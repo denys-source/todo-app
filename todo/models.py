@@ -21,7 +21,7 @@ class Project(models.Model):
 
 class Task(models.Model):
     title = models.CharField(max_length=255)
-    description = models.TextField()
+    description = models.TextField(blank=True)
     completed = models.BooleanField(default=False)
     due_date = models.DateField(default=timezone.now)
     project = models.ForeignKey(
