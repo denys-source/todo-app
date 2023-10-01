@@ -1,0 +1,15 @@
+<div class="sidebar-list">
+  <div class="sidebar-header">
+    <a href="#">Projects</a>
+    <a href="#">
+      <i class="fa-solid fa-plus"></i>
+    </a>
+  </div>
+  {% with user.projects.all as projects %}
+    {% if projects %}
+      {% for project in projects %}<a href="#">{{ project.name }}</a>{% endfor %}
+    {% else %}
+      <div class="text-muted">There are no projects yet</div>
+    {% endif %}
+  {% endwith %}
+</div>

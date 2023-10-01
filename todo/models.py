@@ -11,6 +11,9 @@ class User(AbstractUser):
 
 class Project(models.Model):
     name = models.CharField(max_length=255)
+    user = models.ForeignKey(
+        User, related_name="projects", on_delete=models.CASCADE
+    )
 
     class Meta:
         ordering = ("name",)
@@ -34,7 +37,7 @@ class Task(models.Model):
     user = models.ForeignKey(
         User, related_name="tasks", on_delete=models.CASCADE
     )
-    tags = TaggableManager()
+    tags = TaggableManager(blank=True)
 
     class Meta:
         ordering = (

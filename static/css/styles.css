@@ -15,6 +15,11 @@ ul {
   margin: 0;
 }
 
+a[href] {
+  text-decoration: none;
+  color: #c90404;
+}
+
 body {
   display: flex;
   flex-direction: column;
@@ -44,11 +49,6 @@ body {
 
 .login-controls {
   list-style: none;
-}
-
-.login-controls a[href] {
-  color: #c90404;
-  text-decoration: none;
 }
 
 .nav {
@@ -83,6 +83,10 @@ body {
   background: #ffffff;
 }
 
+.delete-form {
+  width: 150px;
+}
+
 .form-input {
   background: #fafafa;
   box-sizing: border-box;
@@ -101,11 +105,20 @@ body {
   color: #000;
   padding: 10px;
   width: 100%;
-  text-transform: uppercase;
 }
 
 .form-button:hover {
-  background: #946363;
+  background-color: #946363;
+}
+
+.form-button-warning {
+  color: #fff;
+  background-color: #c20404;
+}
+
+.form-button-warning:hover {
+  color: #fff;
+  background-color: #b00505;
 }
 
 .task-container {
@@ -117,6 +130,7 @@ body {
 .task-card {
   display: flex;
   justify-content: space-between;
+  gap: 10px;
   border: 1px solid #000;
   border-radius: 5px;
   padding: 25px 20px;
@@ -127,8 +141,23 @@ body {
   margin-bottom: 10px;
 }
 
-.task-card a[href] {
-  color: #c90404;
+.task-card-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.task-list-controls {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.task-create-link {
+  padding: 10px 20px;
+}
+
+.task-create-link:hover {
+  background-color: #f2f2f2;
 }
 
 .task-main-content {
@@ -158,6 +187,16 @@ body {
 
 .completed {
   text-decoration: line-through;
+}
+
+.sidebar-header {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.text-muted {
+  color: #787878;
 }
 
 /* checkbox css */

@@ -1,7 +1,6 @@
 {% extends "base.html" %}
-
 {% block content %}
-  <h1>Create a new task</h1>
+  <h1>{{ task|yesno:"Update,Create" }} task</h1>
   <form class="task-form" action="" method="post">
     {% csrf_token %}
     {% for field in form %}
@@ -11,7 +10,8 @@
         {{ field.help_text }}
       </div>
     {% endfor %}
-    <input class="form-button" type="submit" value="Create">
+    <input class="form-button"
+           type="submit"
+           value="{{ task|yesno:'Update,Create' }}">
   </form>
 {% endblock content %}
-
