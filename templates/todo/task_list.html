@@ -3,18 +3,22 @@
   <div class="task-container">
     {% for task in task_list %}
       <div class="task-card">
-        <form action="" method=post>
+        <form action="{% url 'todo:task-update-completed' task.pk %}" method=post>
           {% csrf_token %}
-          <input class="checkbox-flip"
-                 type="checkbox"
-                 id="check{{ forloop.counter }}"
-                 onclick="this.form.submit()" />
-          <label for="check{{ forloop.counter }}">
-            <span></span>{{ task.title }}
-          </label>
+          <div class="checkbox-circle">
+            <input type="checkbox"
+                   id="checkbox-circle{{ forloop.counter }}"
+                   name="check"
+                   onclick="this.form.submit()"
+                   {% if task.completed %}checked{% endif %}>
+            <label for="checkbox-circle{{ forloop.counter }}"
+                   {% if task.completed %}class="completed"{% endif %}>{{ task.title }}</label>
+          </div>
         </form>
+        <a href="{% url 'todo:task-detail' task.pk %}">
+          <i class="fa-solid fa-angles-right"></i>
+        </a>
       </div>
     {% endfor %}
   </div>
 {% endblock content %}
-

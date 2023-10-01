@@ -4,7 +4,7 @@ from django.contrib.auth import views as auth_views
 
 urlpatterns = [
     path("admin/", admin.site.urls),
-    path("", include("todo.urls")),
+    path("", include("todo.urls", namespace="todo")),
     path(
         "accounts/login/",
         auth_views.LoginView.as_view(redirect_authenticated_user=True),

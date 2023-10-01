@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% block content %}
+  <div class="task-main-content">
+    <h1>{{ task.title }}</h1>
+    <div class="task-description">
+      {% if task.description %}
+        {{ task.description }}
+      {% else %}
+        No description
+      {% endif %}
+    </div>
+  </div>
+  <div class="task-content-right">
+    <div class="info-item">
+      <div class="info-item-name">Project</div>
+      <div class="info-item-value">
+        {% if task.project %}
+          {{ task.project.name }}
+        {% else %}
+          No project
+        {% endif %}
+      </div>
+    </div>
+    <div class="info-item">
+      <div class="info-item-name">Due date</div>
+      <div class="info-item-value">
+        <i class="fa-solid fa-calendar-day" style="color: #46ae62;"></i>
+        {{ task.due_date }}
+      </div>
+    </div>
+  </div>
+{% endblock content %}

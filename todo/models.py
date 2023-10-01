@@ -37,7 +37,10 @@ class Task(models.Model):
     tags = TaggableManager()
 
     class Meta:
-        ordering = ("due_date",)
+        ordering = (
+            "completed",
+            "due_date",
+        )
 
     def __str__(self) -> str:
         return self.title

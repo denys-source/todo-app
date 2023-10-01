@@ -6,10 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% load static %}
     <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+    <script src="https://kit.fontawesome.com/ba74a74849.js"
+            crossorigin="anonymous"></script>
   </head>
   <body>
     <header class="header">
       <div class="logo">Todo app</div>
+      <ul class="login-controls">
+        {% if user.is_authenticated %}
+          <li>Hi, {{ user.username }}!</li>
+          <li><a href="{% url 'logout' %}">Logout</a></li>
+        {% else %}
+          <li><a href="{% url 'login' %}">Login</a></li>
+        {% endif %}
+      </ul>
     </header>
     <main class="main">
       <nav class="nav">
@@ -20,9 +30,5 @@
         {% endblock content %}
       </div>
     </main>
-    <footer class="footer">
-      footer
-    </footer>
   </body>
 </html>
-

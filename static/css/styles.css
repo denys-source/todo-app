@@ -1,6 +1,5 @@
 html {
-  --header-height: 15vh;
-  --footer-height: 25vh;
+  --header-height: 10vh;
 }
 
 * {
@@ -25,35 +24,42 @@ body {
 
 .main {
   display: flex;
-  min-height: calc(100vh - var(--header-height) - var(--footer-height));
+  min-height: calc(100vh - var(--header-height));
 }
 
 .header {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: var(--header-height);
+  background-color: #2e2e2e;
+  color: #fff;
   padding: 25px;
+}
+
+.login-controls {
+  display: flex;
+  gap: 10px;
+}
+
+.login-controls {
+  list-style: none;
+}
+
+.login-controls a[href] {
+  color: #c90404;
+  text-decoration: none;
 }
 
 .nav {
   flex: 1;
   padding: 25px;
-  border: 1px solid #000;
+  background-color: #f2f2f2;
 }
 
 .content {
   flex: 4;
   padding: 25px;
-  border: 1px solid #000;
-}
-
-.footer {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: var(--footer-height);
-  padding: 25px;
-  border: 1px solid #000;
 }
 
 .login-form {
@@ -64,6 +70,13 @@ body {
 }
 
 .register-form {
+  width: 450px;
+  border: 1px solid #ddd;
+  padding: 2rem;
+  background: #ffffff;
+}
+
+.task-form {
   width: 450px;
   border: 1px solid #ddd;
   padding: 2rem;
@@ -83,7 +96,7 @@ body {
 }
 
 .form-button {
-  background: #b2cdf7;
+  background-color: #bdbdbd;
   border: 1px solid #ddd;
   color: #000;
   padding: 10px;
@@ -92,7 +105,7 @@ body {
 }
 
 .form-button:hover {
-  background: #89a3cc;
+  background: #946363;
 }
 
 .task-container {
@@ -102,6 +115,8 @@ body {
 }
 
 .task-card {
+  display: flex;
+  justify-content: space-between;
   border: 1px solid #000;
   border-radius: 5px;
   padding: 25px 20px;
@@ -112,61 +127,93 @@ body {
   margin-bottom: 10px;
 }
 
+.task-card a[href] {
+  color: #c90404;
+}
+
+.task-main-content {
+  height: 100%;
+  min-width: 40%;
+  float: left;
+}
+
+.task-content-right {
+  height: 100%;
+  min-width: 15%;
+  margin-left: 5%;
+  float: left;
+}
+
+.task-description {
+  color: #787878;
+}
+
+.info-item:not(:last-of-type) {
+  margin-bottom: 10px;
+}
+
+.info-item-name {
+  color: #787878;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
 /* checkbox css */
 
-.checkbox {
-  margin: 15px;
-}
-
-label {
-  font-family: Helvetica;
-  letter-spacing: 1px;
-}
-
-@keyframes pull {
-  0% {
-    height: 0;
-  }
-  100% {
-    height: 1.2rem;
-  }
-}
-
-.checkbox-flip {
+.checkbox-circle input[type="checkbox"] {
   display: none;
 }
 
-.checkbox-flip + label span {
-  display: inline-block;
-  width: 25px;
-  height: 19px;
-  margin: 0 5px -4px 0;
+.checkbox-circle input[type="checkbox"] + label {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 20px;
+  font: 14px/20px "Open Sans", Arial, sans-serif;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 }
 
-.checkbox-flip + label span:before, .checkbox-flip + label span:after {
-  -webkit-transition: all 0.3s ease-in-out;
-  -moz-transition: all 0.3s ease-in-out;
-  transition: all 0.3s ease-in-out;
+.checkbox-circle input[type="checkbox"]:hover + label:hover {
+  color: rgb(23, 86, 228);
+}
+
+.checkbox-circle input[type="checkbox"]:hover + label:before {
+  border: 1px solid #343a3f;
+  box-shadow: 2px 1px 0 #343a3f;
+}
+
+.checkbox-circle input[type="checkbox"] + label:last-child {
+  margin-bottom: 0;
+}
+
+.checkbox-circle input[type="checkbox"] + label:before {
   content: "";
+  display: block;
+  width: 1.4em;
+  height: 1.4em;
+  border: 1px solid #343a3f;
+  border-radius: 1em;
   position: absolute;
-  z-index: 1;
-  width: 1rem;
-  height: 1rem;
-  background: transparent;
-  border: 2px solid #FF4040;
+  left: 0;
+  top: 0;
+  -webkit-transition: all 0.2s, background 0.2s ease-in-out;
+  transition: all 0.2s, background 0.2s ease-in-out;
+  background: #f3f3f3;
+  box-shadow: -2px -1px 0 #343a3f;
 }
 
-.checkbox-flip + label span:after {
-  z-index: 0;
-  border: none;
-}
-
-.checkbox-flip:checked + label span:before {
-  -webkit-transform: rotateY(180deg);
-  -moz-transform: rotateY(180deg);
-  -ms-transform: rotateY(180deg);
-  -o-transform: rotateY(180deg);
-  transform: rotateY(180deg);
-  background: #FF4040;
+.checkbox-circle input[type="checkbox"]:checked + label:before {
+  border-radius: 1em;
+  border: 2px solid #fff;
+  width: 1.15em;
+  height: 1.15em;
+  background: #50565a;
+  box-shadow: 2px 1px 0 #50565a;
 }
 
