@@ -17,7 +17,7 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 
 from todo.forms import RegisterForm, TaskCreateForm
-from todo.models import Task
+from todo.models import Project, Task
 
 
 class OwnerRequiredMixin:
@@ -76,6 +76,14 @@ def update_completed(request, pk: int) -> HttpResponse:
         task.save()
         return redirect("todo:task-list")
     return redirect("todo:task-list")
+
+
+class ProjectListView(LoginRequiredMixin, ListView):
+    model = Project
+
+    def get_queryset(self) -> QuerySet[Project]:
+        queryset = Project.objects.filter(user=self.request.user)
+        return queryset
 
 
 class RegisterView(FormView):

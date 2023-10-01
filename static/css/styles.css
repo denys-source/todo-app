@@ -59,7 +59,7 @@ body {
 
 .content {
   flex: 4;
-  padding: 25px;
+  padding: 25px 10%;
 }
 
 .login-form {
@@ -137,6 +137,26 @@ body {
   min-width: 300px;
 }
 
+.project-card {
+  display: flex;
+  min-width: 100px;
+}
+
+.project-card-link {
+  display: block;
+  padding: 15px 20px;
+  width: 100%;
+  height: 100%;
+}
+
+.project-card-link:hover {
+  background-color: #dbd9d9; 
+}
+
+.project-card:not(:last-of-type) {
+  margin-bottom: 10px;
+}
+
 .task-card:not(:last-of-type) {
   margin-bottom: 10px;
 }
@@ -152,12 +172,19 @@ body {
   margin-bottom: 15px;
 }
 
-.task-create-link {
+.project-list-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.create-link {
   padding: 10px 20px;
 }
 
-.task-create-link:hover {
-  background-color: #f2f2f2;
+.create-link:hover {
+  background-color: #dbd9d9; 
 }
 
 .task-main-content {
@@ -189,7 +216,7 @@ body {
   text-decoration: line-through;
 }
 
-.sidebar-header {
+.sidebar-controls {
   display: flex;
   justify-content: space-between;
   margin-bottom: 10px;
@@ -197,6 +224,10 @@ body {
 
 .text-muted {
   color: #787878;
+}
+
+.text-bold {
+  font-weight: bold;
 }
 
 /* checkbox css */

@@ -1,6 +1,7 @@
 from django.urls import path
 
 from todo.views import (
+    ProjectListView,
     RegisterView,
     TaskCreateView,
     TaskDetailView,
@@ -30,6 +31,7 @@ urlpatterns = [
         update_completed,
         name="task-update-completed",
     ),
+    path("projects/", ProjectListView.as_view(), name="project-list"),
 ]
 
 app_name = "todo"

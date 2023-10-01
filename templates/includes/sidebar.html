@@ -1,13 +1,17 @@
 <div class="sidebar-list">
-  <div class="sidebar-header">
-    <a href="#">Projects</a>
+  <div class="sidebar-controls">
+    <a class="text-bold" href="{% url 'todo:project-list' %}">Projects</a>
     <a href="#">
       <i class="fa-solid fa-plus"></i>
     </a>
   </div>
   {% with user.projects.all as projects %}
     {% if projects %}
-      {% for project in projects %}<a href="#">{{ project.name }}</a>{% endfor %}
+      {% for project in projects %}
+        <div class="project-card">
+          <a class="project-card-link" href="#">{{ project.name }}</a>
+        </div>
+      {% endfor %}
     {% else %}
       <div class="text-muted">There are no projects yet</div>
     {% endif %}
