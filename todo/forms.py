@@ -37,6 +37,17 @@ class TaskForm(forms.ModelForm):
         widgets = {"due_date": forms.widgets.DateInput(attrs={"type": "date"})}
 
 
+class TaskSearchForm(forms.Form):
+    q = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={"class": "form-input", "placeholder": "Search task"}
+        ),
+    )
+
+
 class ProjectForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

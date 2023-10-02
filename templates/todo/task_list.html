@@ -24,6 +24,12 @@
       Create task
     </a>
   </div>
+  <form class="search-form" action="" method="get">
+    {% for field in search_form %}<div class="form-group">{{ field }}</div>{% endfor %}
+    <div class="form-group">
+      <input class="form-button" type="submit" value="Search">
+    </div>
+  </form>
   {% if task_list %}
     {% include "includes/task_container.html" %}
   {% else %}

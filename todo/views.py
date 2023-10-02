@@ -5,7 +5,7 @@ from typing import Any
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from django.core.exceptions import PermissionDenied
-from django.db.models import QuerySet
+from django.db.models import Q, QuerySet
 from django import forms
 from django.http import HttpRequest, HttpResponse, HttpResponseBase
 from django.urls import reverse, reverse_lazy
@@ -21,7 +21,13 @@ from django.contrib.auth.mixins import LoginRequiredMixin
 from django.shortcuts import get_object_or_404, redirect
 from django.utils import timezone
 
-from todo.forms import FilterForm, ProjectForm, RegisterForm, TaskForm
+from todo.forms import (
+    FilterForm,
+    ProjectForm,
+    RegisterForm,
+    TaskForm,
+    TaskSearchForm,
+)
 from todo.models import Project, Task
 
 
@@ -41,6 +47,9 @@ class TaskListView(LoginRequiredMixin, ListView):
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
         context["common_tags"] = Task.tags.most_common()[:5]
+
+        search_form = TaskSearchForm()
+        context["search_form"] = search_form
 
         filter_form = FilterForm()
         for param, value in self.request.GET.items():
@@ -67,6 +76,11 @@ class TaskListView(LoginRequiredMixin, ListView):
 
         if tag_list := self.request.GET.getlist("tag"):
             queryset = queryset.filter(tags__name__in=tag_list)
+
+        if query := self.request.GET.get("q"):
+            queryset = queryset.filter(
+                Q(title__icontains=query) | Q(description__icontains=query)
+            )
 
         return queryset
 
