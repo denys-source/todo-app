@@ -2,7 +2,7 @@ from typing import Any
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 
-from todo.models import Task, User
+from todo.models import Project, Task, User
 
 
 class RegisterForm(UserCreationForm):
@@ -25,7 +25,7 @@ class RegisterForm(UserCreationForm):
         )
 
 
-class TaskCreateForm(forms.ModelForm):
+class TaskForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         for visible in self.visible_fields():
@@ -35,3 +35,18 @@ class TaskCreateForm(forms.ModelForm):
         model = Task
         fields = ("title", "description", "due_date", "project", "tags")
         widgets = {"due_date": forms.widgets.DateInput(attrs={"type": "date"})}
+
+
+class ProjectForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs["class"] = "form-input"
+
+    class Meta:
+        model = Project
+        fields = ("name",)
+
+
+class FilterForm(forms.Form):
+    pass

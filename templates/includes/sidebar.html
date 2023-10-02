@@ -1,7 +1,7 @@
 <div class="sidebar-list">
   <div class="sidebar-controls">
     <a class="text-bold" href="{% url 'todo:project-list' %}">Projects</a>
-    <a href="#">
+    <a href="{% url 'todo:project-create' %}">
       <i class="fa-solid fa-plus"></i>
     </a>
   </div>
@@ -9,7 +9,8 @@
     {% if projects %}
       {% for project in projects %}
         <div class="project-card">
-          <a class="project-card-link" href="#">{{ project.name }}</a>
+          <a class="project-card-link"
+             href="{% url 'todo:project-detail' project.pk %}">{{ project.name }}</a>
         </div>
       {% endfor %}
     {% else %}
@@ -17,3 +18,4 @@
     {% endif %}
   {% endwith %}
 </div>
+

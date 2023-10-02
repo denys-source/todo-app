@@ -34,8 +34,8 @@ body {
 
 .header {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   height: var(--header-height);
   background-color: #2e2e2e;
   color: #fff;
@@ -45,9 +45,6 @@ body {
 .login-controls {
   display: flex;
   gap: 10px;
-}
-
-.login-controls {
   list-style: none;
 }
 
@@ -63,28 +60,32 @@ body {
 }
 
 .login-form {
-  width: 350px;
+  max-width: 350px;
   border: 1px solid #ddd;
   padding: 2rem;
   background: #ffffff;
 }
 
 .register-form {
-  width: 450px;
+  max-width: 450px;
   border: 1px solid #ddd;
   padding: 2rem;
   background: #ffffff;
 }
 
 .task-form {
-  width: 450px;
+  max-width: 450px;
   border: 1px solid #ddd;
   padding: 2rem;
   background: #ffffff;
 }
 
 .delete-form {
-  width: 150px;
+  max-width: 150px;
+}
+
+.project-form {
+  max-width: 300px;
 }
 
 .form-input {
@@ -108,6 +109,7 @@ body {
 }
 
 .form-button:hover {
+  color: #fff;
   background-color: #946363;
 }
 
@@ -123,18 +125,27 @@ body {
 
 .task-container {
   display: inline-block;
-  max-height: 400px;
+  max-height: 500px;
   overflow-y: scroll;
 }
 
 .task-card {
+  border: 1px solid #000;
+  border-radius: 5px;
+  padding: 15px 15px;
+  min-width: 300px;
+}
+
+.task-card-main {
   display: flex;
   justify-content: space-between;
   gap: 10px;
-  border: 1px solid #000;
-  border-radius: 5px;
-  padding: 25px 20px;
-  min-width: 300px;
+  margin-bottom: 5px;
+}
+
+.task-card-info {
+  display: flex;
+  justify-content: right; 
 }
 
 .project-card {
@@ -179,11 +190,23 @@ body {
   margin-bottom: 15px;
 }
 
-.create-link {
+.project-detail-controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
+}
+
+.project-detail-controls h1 {
+  margin: 0;
+}
+
+.action-link {
+  background-color: #f2f0f0;
   padding: 10px 20px;
 }
 
-.create-link:hover {
+.action-link:hover {
   background-color: #dbd9d9; 
 }
 

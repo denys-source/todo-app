@@ -5,16 +5,18 @@
     {% with project_list.count as num_projects %}
       <div>{{ num_projects }} project{{ num_projects|pluralize }}</div>
     {% endwith %}
-    <a class="create-link" href="#">
+    <a class="action-link" href="{% url 'todo:project-create' %}">
       <i class="fa-solid fa-plus"></i>
       Create
     </a>
   </div>
   {% for project in project_list %}
     <div class="project-card">
-      <a class="project-card-link" href="#">{{ project.name }}</a>
+      <a class="project-card-link"
+         href="{% url 'todo:project-detail' project.pk %}">{{ project.name }}</a>
     </div>
   {% empty %}
     <p class="text-muted">You haven't create any projects yet</p>
   {% endfor %}
 {% endblock content %}
+

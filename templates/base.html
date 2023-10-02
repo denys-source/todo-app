@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% block title %}{% endblock %}
+    <title>
+      {% block title %}Todo{% endblock %}
+    </title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% load static %}
@@ -15,9 +17,13 @@
       <ul class="login-controls">
         {% if user.is_authenticated %}
           <li>Hi, {{ user.username }}!</li>
-          <li><a href="{% url 'logout' %}">Logout</a></li>
+          <li>
+            <a href="{% url 'logout' %}">Logout</a>
+          </li>
         {% else %}
-          <li><a href="{% url 'login' %}">Login</a></li>
+          <li>
+            <a href="{% url 'login' %}">Login</a>
+          </li>
         {% endif %}
       </ul>
     </header>
@@ -32,3 +38,4 @@
     </main>
   </body>
 </html>
+
