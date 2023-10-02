@@ -3,7 +3,7 @@ from django.db import models
 from django.contrib.auth.models import AbstractUser
 
 from taggit.managers import TaggableManager
-from taggit.models import GenericTaggedItemBase, TagBase
+from taggit.models import GenericTaggedItemBase, TagBase, slugify
 from crum import get_current_user
 
 
@@ -19,6 +19,7 @@ class UserInfoTag(TagBase):
     def save(self, *args, **kwargs):
         user = get_current_user()
         self.user = user
+        self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
 
 
