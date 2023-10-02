@@ -252,12 +252,23 @@ body {
   margin-bottom: 15px;
 }
 
-/* Project Detail Controls */
-.project-detail-controls {
+/* Project Detail Header */
+.project-detail-header {
   display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 15px;
+}
+
+.project-detail-header h1 {
+  margin-bottom: 0;
+}
+
+/* Project Detail Controls */
+.project-detail-controls {
+  display: flex;
+  align-items: center;
+  gap: 10px;
 }
 
 .project-detail-controls h1 {
