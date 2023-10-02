@@ -35,6 +35,8 @@
     {% for tag in common_tags %}
       <a href="?{% query_transform request tag=tag.name %}">{{ tag.name }}</a>
       {% if not forloop.last %},{% endif %}
+    {% empty %}
+      <span class="text-muted">no tags</span>
     {% endfor %}
   </div>
   {% if task_list %}
@@ -43,3 +45,4 @@
     <h1>You haven't created any tasks yet</h1>
   {% endif %}
 {% endblock content %}
+

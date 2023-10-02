@@ -13,7 +13,9 @@
   </head>
   <body>
     <header class="header">
-      <div class="logo">Todo app</div>
+      <div class="logo">
+        <a href="{% url 'todo:task-list' %}">Todo app</a>
+      </div>
       <ul class="login-controls">
         {% if user.is_authenticated %}
           <li>Hi, {{ user.username }}!</li>
@@ -23,6 +25,9 @@
         {% else %}
           <li>
             <a href="{% url 'login' %}">Login</a>
+          </li>
+          <li>
+            <a href="{% url 'todo:register' %}">Register</a>
           </li>
         {% endif %}
       </ul>
@@ -38,4 +43,3 @@
     </main>
   </body>
 </html>
-

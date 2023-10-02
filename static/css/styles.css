@@ -1,3 +1,4 @@
+/* Reset and Base Styles */
 html {
   --header-height: 10vh;
 }
@@ -6,20 +7,25 @@ html {
   box-sizing: border-box;
 }
 
+/* Typography */
 h1 {
   margin-top: 0;
 }
 
+/* Lists */
 ul {
+  list-style-type: square;
   padding: 15px;
   margin: 0;
 }
 
+/* Links */
 a[href] {
   text-decoration: none;
   color: #c90404;
 }
 
+/* Body and Layout */
 body {
   display: flex;
   flex-direction: column;
@@ -32,6 +38,22 @@ body {
   min-height: calc(100vh - var(--header-height));
 }
 
+/* Intro Section */
+.intro-content {
+  display: flex;
+  padding: 25px 10%;
+}
+
+.intro-text h1 {
+  font-size: 60px;
+}
+
+.intro-text p {
+  font-size: 18px;
+  line-height: 32px;
+}
+
+/* Header */
 .header {
   display: flex;
   align-items: center;
@@ -42,23 +64,27 @@ body {
   padding: 25px;
 }
 
+/* Login Controls */
 .login-controls {
   display: flex;
   gap: 10px;
   list-style: none;
 }
 
+/* Navigation */
 .nav {
   flex: 1;
   padding: 25px;
   background-color: #f2f2f2;
 }
 
+/* Content Area */
 .content {
   flex: 4;
   padding: 25px 10%;
 }
 
+/* Forms */
 .login-form {
   max-width: 350px;
   border: 1px solid #ddd;
@@ -84,16 +110,19 @@ body {
   max-width: 150px;
 }
 
+/* Search Form */
 .search-form {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
+/* Project Form */
 .project-form {
   max-width: 300px;
 }
 
+/* Form Input */
 .form-input {
   background: #fafafa;
   box-sizing: border-box;
@@ -102,10 +131,12 @@ body {
   width: 100%;
 }
 
+/* Form Group */
 .form-group {
   margin-bottom: 1rem;
 }
 
+/* Form Button */
 .form-button {
   background-color: #bdbdbd;
   border: 1px solid #ddd;
@@ -120,6 +151,7 @@ body {
   background-color: #946363;
 }
 
+/* Form Button Warning */
 .form-button-warning {
   color: #fff;
   background-color: #c20404;
@@ -130,16 +162,19 @@ body {
   background-color: #b00505;
 }
 
+/* Tag Container */
 .tag-container {
   margin-bottom: 15px;
 }
 
+/* Task Container */
 .task-container {
   display: inline-block;
   max-height: 500px;
   overflow-y: scroll;
 }
 
+/* Task Card */
 .task-card {
   border: 1px solid #000;
   border-radius: 5px;
@@ -147,6 +182,7 @@ body {
   min-width: 300px;
 }
 
+/* Task Card Main */
 .task-card-main {
   display: flex;
   justify-content: space-between;
@@ -154,16 +190,19 @@ body {
   margin-bottom: 5px;
 }
 
+/* Task Card Info */
 .task-card-info {
   display: flex;
   justify-content: space-between;
 }
 
+/* Project Card */
 .project-card {
   display: flex;
   min-width: 100px;
 }
 
+/* Project Card Link */
 .project-card-link {
   display: block;
   padding: 15px 20px;
@@ -172,34 +211,40 @@ body {
 }
 
 .project-card-link:hover {
-  background-color: #dbd9d9; 
+  background-color: #dbd9d9;
 }
 
+/* Project Card Not Last of Type */
 .project-card:not(:last-of-type) {
   margin-bottom: 10px;
 }
 
+/* Task Card Not Last of Type */
 .task-card:not(:last-of-type) {
   margin-bottom: 10px;
 }
 
+/* Task Card Controls */
 .task-card-controls {
   display: flex;
   gap: 10px;
 }
 
+/* Task List Controls */
 .task-list-controls {
   display: flex;
   gap: 10px;
   margin-bottom: 15px;
 }
 
+/* Task List Controls Input Type Date */
 .task-list-controls input[type=date] {
   height: 100%;
   background-color: #f2f0f0;
   border: none;
 }
 
+/* Project List Controls */
 .project-list-controls {
   display: flex;
   align-items: center;
@@ -207,6 +252,7 @@ body {
   margin-bottom: 15px;
 }
 
+/* Project Detail Controls */
 .project-detail-controls {
   display: flex;
   align-items: center;
@@ -218,21 +264,24 @@ body {
   margin: 0;
 }
 
+/* Action Link */
 .action-link {
   background-color: #f2f0f0;
   padding: 10px 20px;
 }
 
 .action-link:hover {
-  background-color: #dbd9d9; 
+  background-color: #dbd9d9;
 }
 
+/* Task Main Content */
 .task-main-content {
   height: 100%;
   min-width: 40%;
   float: left;
 }
 
+/* Task Content Right */
 .task-content-right {
   height: 100%;
   min-width: 15%;
@@ -240,22 +289,27 @@ body {
   float: left;
 }
 
+/* Task Description */
 .task-description {
   color: #787878;
 }
 
+/* Info Item Not Last of Type */
 .info-item:not(:last-of-type) {
   margin-bottom: 10px;
 }
 
+/* Info Item Name */
 .info-item-name {
   color: #787878;
 }
 
+/* Completed */
 .completed {
   text-decoration: line-through;
 }
 
+/* Sidebar Controls */
 .sidebar-controls {
   display: flex;
   align-items: center;
@@ -263,16 +317,18 @@ body {
   margin: 10px 0;
 }
 
+/* Text Muted */
 .text-muted {
   color: #787878;
 }
 
+/* Text Bold */
 .text-bold {
   font-weight: bold;
 }
 
+/* Checkbox Styles */
 /* checkbox css */
-
 .checkbox-circle input[type="checkbox"] {
   display: none;
 }

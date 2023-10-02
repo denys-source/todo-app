@@ -18,7 +18,7 @@ from django.views.generic import (
 )
 from django.views.generic.edit import FormView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import get_object_or_404, redirect
+from django.shortcuts import get_object_or_404, redirect, render
 from django.utils import timezone
 
 from todo.forms import (
@@ -30,6 +30,12 @@ from todo.forms import (
     TaskSearchForm,
 )
 from todo.models import Project, Task
+
+
+def home_page_view(request: HttpRequest) -> HttpResponse:
+    if request.user.is_authenticated:
+        return redirect("todo:task-list")
+    return render(request, "todo/home_page.html")
 
 
 class OwnerRequiredMixin:
@@ -47,7 +53,7 @@ class TaskListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        context["common_tags"] = Task.tags.most_common()[:5]
+        context["common_tags"] = self.request.user.tags.all()[:5]
 
         search_form = TaskSearchForm(
             initial={"q": self.request.GET.get("q", "")}

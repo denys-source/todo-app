@@ -22,7 +22,7 @@
          href="{% url 'todo:project-detail' project.pk %}">{{ project.name }}</a>
     </div>
   {% empty %}
-    <p class="text-muted">You haven't create any projects yet</p>
+    <p class="text-muted">You haven't created any projects yet</p>
   {% endfor %}
 {% endblock content %}
 

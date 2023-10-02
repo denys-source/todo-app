@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Todo</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link href="{% static 'css/styles.css' %}" rel="stylesheet">
+  </head>
+  <body>
+    <header class="header">
+      <div class="logo">Todo app</div>
+      <ul class="login-controls">
+        <li>
+          <a href="{% url 'login' %}">Login</a>
+        </li>
+        <li>
+          <a href="{% url 'todo:register' %}">Register</a>
+        </li>
+      </ul>
+    </header>
+    <main class="main">
+      <div class="intro-content">
+        <div class="intro-text">
+          <h1>Stay organized</h1>
+          <p>
+            Your essential tool for managing tasks efficiently.
+            Stay organized, boost productivity, and never miss a deadline again.
+          </p>
+          <a class="action-link" href="{% url 'todo:register' %}">Get started</a>
+        </div>
+        <div class="intro-image">
+          <img src="{% static 'images/homepage.svg' %}">
+        </div>
+      </div>
+    </main>
+  </body>
+</html>

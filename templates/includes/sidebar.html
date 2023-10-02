@@ -1,22 +1,26 @@
 <div class="sidebar-list">
-  <a class="text-bold" href="{% url 'todo:task-list' %}">All tasks</a>
-  <div class="sidebar-controls">
-    <a class="text-bold" href="{% url 'todo:project-list' %}">Projects</a>
-    <a class="action-link" href="{% url 'todo:project-create' %}">
-      <i class="fa-solid fa-plus"></i>
-    </a>
-  </div>
-  {% with user.projects.all as projects %}
-    {% if projects %}
-      {% for project in projects %}
-        <div class="project-card">
-          <a class="project-card-link"
-             href="{% url 'todo:project-detail' project.pk %}">{{ project.name }}</a>
-        </div>
-      {% endfor %}
-    {% else %}
-      <div class="text-muted">There are no projects yet</div>
-    {% endif %}
-  {% endwith %}
+  {% if user.is_authenticated %}
+    <a class="text-bold" href="{% url 'todo:task-list' %}">All tasks</a>
+    <div class="sidebar-controls">
+      <a class="text-bold" href="{% url 'todo:project-list' %}">Projects</a>
+      <a class="action-link" href="{% url 'todo:project-create' %}">
+        <i class="fa-solid fa-plus"></i>
+      </a>
+    </div>
+    {% with user.projects.all as projects %}
+      {% if projects %}
+        {% for project in projects %}
+          <div class="project-card">
+            <a class="project-card-link"
+               href="{% url 'todo:project-detail' project.pk %}">{{ project.name }}</a>
+          </div>
+        {% endfor %}
+      {% else %}
+        <div class="text-muted">There are no projects yet</div>
+      {% endif %}
+    {% endwith %}
+  {% else %}
+    <div class="text-muted">There is nothing yet</div>
+  {% endif %}
 </div>
 
