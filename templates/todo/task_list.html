@@ -2,15 +2,26 @@
 {% load query_transform %}
 {% block content %}
   <div class="task-list-controls">
+    <a href="?" class="action-link">
+      <i class="fa-solid fa-filter-circle-xmark"></i>
+      Reset
+    </a>
     <a class="action-link" href="?{% query_transform request date=today %}">
       <i class="fa-solid fa-calendar-day"></i>
       Today
     </a>
     <a class="action-link"
-       href="?{% query_transform request date=tomorrow %}">Tomorrow</a>
+       href="?{% query_transform request date=tomorrow %}">
+      <i class="fa-solid fa-forward"></i>
+      Tomorrow
+    </a>
+    <form action="" method="get">
+      {% for hidden_field in filter_form %}{{ hidden_field }}{% endfor %}
+      <input type="date" name="date" onchange="this.form.submit()">
+    </form>
     <a class="action-link" href="{% url 'todo:task-create' %}">
       <i class="fa-solid fa-plus"></i>
-      Create
+      Create task
     </a>
   </div>
   {% if task_list %}
@@ -19,4 +30,3 @@
     <h1>You haven't created any tasks yet</h1>
   {% endif %}
 {% endblock content %}
-

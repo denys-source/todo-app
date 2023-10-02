@@ -183,6 +183,12 @@ body {
   margin-bottom: 15px;
 }
 
+.task-list-controls input[type=date] {
+  height: 100%;
+  background-color: #f2f0f0;
+  border: none;
+}
+
 .project-list-controls {
   display: flex;
   align-items: center;

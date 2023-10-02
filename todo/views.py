@@ -44,9 +44,10 @@ class TaskListView(LoginRequiredMixin, ListView):
 
         filter_form = FilterForm()
         for param, value in self.request.GET.items():
-            filter_form.fields[param] = forms.CharField(
-                widget=forms.HiddenInput(attrs={"value": value})
-            )
+            if param != "date":
+                filter_form.fields[param] = forms.CharField(
+                    widget=forms.HiddenInput(attrs={"value": value})
+                )
         context["filter_form"] = filter_form
 
         context["today"] = str(timezone.now().date())
