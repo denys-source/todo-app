@@ -48,6 +48,17 @@ class TaskSearchForm(forms.Form):
     )
 
 
+class ProjectSearchForm(forms.Form):
+    q = forms.CharField(
+        max_length=255,
+        required=False,
+        label="",
+        widget=forms.TextInput(
+            attrs={"class": "form-input", "placeholder": "Search project"}
+        ),
+    )
+
+
 class ProjectForm(forms.ModelForm):
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

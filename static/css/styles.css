@@ -130,6 +130,10 @@ body {
   background-color: #b00505;
 }
 
+.tag-container {
+  margin-bottom: 15px;
+}
+
 .task-container {
   display: inline-block;
   max-height: 500px;
@@ -152,7 +156,7 @@ body {
 
 .task-card-info {
   display: flex;
-  justify-content: right; 
+  justify-content: space-between;
 }
 
 .project-card {
@@ -254,8 +258,9 @@ body {
 
 .sidebar-controls {
   display: flex;
+  align-items: center;
   justify-content: space-between;
-  margin-bottom: 10px;
+  margin: 10px 0;
 }
 
 .text-muted {
@@ -286,7 +291,7 @@ body {
 }
 
 .checkbox-circle input[type="checkbox"]:hover + label:hover {
-  color: rgb(23, 86, 228);
+  color: #c90404;
 }
 
 .checkbox-circle input[type="checkbox"]:hover + label:before {

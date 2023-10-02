@@ -7,12 +7,10 @@
       Edit
     </a>
   </div>
-  {% with project.tasks.all as task_list %}
-    {% if task_list %}
-      {% include "includes/task_container.html" %}
-    {% else %}
-      <p class="text-muted">You haven't created any tasks in that project yet</p>
-    {% endif %}
-  {% endwith %}
+  {% if task_list %}
+    {% include "includes/task_container.html" %}
+  {% else %}
+    <p class="text-muted">You haven't created any tasks in that project yet</p>
+  {% endif %}
 {% endblock content %}
 

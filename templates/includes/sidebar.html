@@ -1,7 +1,8 @@
 <div class="sidebar-list">
+  <a class="text-bold" href="{% url 'todo:task-list' %}">All tasks</a>
   <div class="sidebar-controls">
     <a class="text-bold" href="{% url 'todo:project-list' %}">Projects</a>
-    <a href="{% url 'todo:project-create' %}">
+    <a class="action-link" href="{% url 'todo:project-create' %}">
       <i class="fa-solid fa-plus"></i>
     </a>
   </div>

@@ -30,6 +30,13 @@
       <input class="form-button" type="submit" value="Search">
     </div>
   </form>
+  <div class="tag-container">
+    <span class="text-bold">Tags:</span>
+    {% for tag in common_tags %}
+      <a href="?{% query_transform request tag=tag.name %}">{{ tag.name }}</a>
+      {% if not forloop.last %},{% endif %}
+    {% endfor %}
+  </div>
   {% if task_list %}
     {% include "includes/task_container.html" %}
   {% else %}

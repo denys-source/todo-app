@@ -24,6 +24,7 @@ from django.utils import timezone
 from todo.forms import (
     FilterForm,
     ProjectForm,
+    ProjectSearchForm,
     RegisterForm,
     TaskForm,
     TaskSearchForm,
@@ -48,7 +49,9 @@ class TaskListView(LoginRequiredMixin, ListView):
         context = super().get_context_data(**kwargs)
         context["common_tags"] = Task.tags.most_common()[:5]
 
-        search_form = TaskSearchForm()
+        search_form = TaskSearchForm(
+            initial={"q": self.request.GET.get("q", "")}
+        )
         context["search_form"] = search_form
 
         filter_form = FilterForm()
@@ -128,13 +131,31 @@ def update_completed(request, pk: int) -> HttpResponse:
 class ProjectListView(LoginRequiredMixin, ListView):
     model = Project
 
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        search_form = ProjectSearchForm(
+            initial={"q": self.request.GET.get("q", "")}
+        )
+        context["search_form"] = search_form
+        return context
+
     def get_queryset(self) -> QuerySet[Project]:
         queryset = Project.objects.filter(user=self.request.user)
+        if query := self.request.GET.get("q"):
+            queryset = queryset.filter(name__icontains=query)
         return queryset
 
 
 class ProjectDetailView(LoginRequiredMixin, OwnerRequiredMixin, DetailView):
     model = Project
+
+    def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
+        context = super().get_context_data(**kwargs)
+        queryset = self.object.tasks.all()
+        if tag_list := self.request.GET.getlist("tag"):
+            queryset = queryset.filter(tags__name__in=tag_list)
+        context["task_list"] = queryset
+        return context
 
 
 class ProjectCreateView(LoginRequiredMixin, CreateView):
