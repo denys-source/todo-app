@@ -34,6 +34,9 @@
     <span class="text-bold">Tags:</span>
     {% for tag in common_tags %}
       <a href="?{% query_transform request tag=tag.name %}">{{ tag.name }}</a>
+      <a href="{% url 'todo:tag-delete' tag.pk %}">
+        <i class="fa-regular fa-circle-xmark"></i>
+      </a>
       {% if not forloop.last %},{% endif %}
     {% empty %}
       <span class="text-muted">no tags</span>

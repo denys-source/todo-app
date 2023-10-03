@@ -29,7 +29,7 @@ from todo.forms import (
     TaskForm,
     TaskSearchForm,
 )
-from todo.models import Project, Task
+from todo.models import Project, Task, UserInfoTag
 
 
 def home_page_view(request: HttpRequest) -> HttpResponse:
@@ -125,7 +125,7 @@ class TaskDeleteView(LoginRequiredMixin, OwnerRequiredMixin, DeleteView):
 
 
 @login_required
-def update_completed(request, pk: int) -> HttpResponse:
+def toggle_completed_status(request, pk: int) -> HttpResponse:
     if request.method == "POST":
         task = get_object_or_404(Task, pk=pk)
         if task.user != request.user:
@@ -190,6 +190,15 @@ class ProjectDeleteView(LoginRequiredMixin, OwnerRequiredMixin, DeleteView):
     model = Project
     template_name = "todo/project_delete.html"
     success_url = reverse_lazy("todo:project-list")
+
+
+@login_required
+def tag_delete_view(request: HttpRequest, pk: int) -> HttpResponse:
+    tag = UserInfoTag.objects.get(pk=pk)
+    if request.user != tag.user:
+        raise PermissionDenied()
+    tag.delete()
+    return redirect("todo:task-list")
 
 
 class RegisterView(FormView):
