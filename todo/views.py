@@ -74,7 +74,9 @@ class TaskListView(LoginRequiredMixin, ListView):
         return context
 
     def get_queryset(self) -> QuerySet[Task]:
-        queryset = Task.objects.filter(user=self.request.user)
+        queryset = Task.objects.prefetch_related("tags").filter(
+            user=self.request.user
+        )
 
         if date_string := self.request.GET.get("date"):
             try:
@@ -157,7 +159,7 @@ class ProjectDetailView(LoginRequiredMixin, OwnerRequiredMixin, DetailView):
 
     def get_context_data(self, **kwargs: Any) -> dict[str, Any]:
         context = super().get_context_data(**kwargs)
-        queryset = self.object.tasks.all()
+        queryset = self.object.tasks.prefetch_related("tags")
         if tag_list := self.request.GET.getlist("tag"):
             queryset = queryset.filter(tags__name__in=tag_list)
         context["task_list"] = queryset
