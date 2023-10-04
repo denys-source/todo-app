@@ -1,8 +1,10 @@
 from typing import Any
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
+from django.db.models import QuerySet
+from todo.middleware import get_current_user
 
-from todo.models import Project, Task, User
+from todo.models import Project, Tag, Task, User
 
 
 class RegisterForm(UserCreationForm):
@@ -26,10 +28,25 @@ class RegisterForm(UserCreationForm):
 
 
 class TaskForm(forms.ModelForm):
+    tags = forms.ModelMultipleChoiceField(
+        queryset=QuerySet(),
+        widget=forms.CheckboxSelectMultiple,
+        required=False,
+    )
+
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
+
+        self.fields["project"].queryset = Project.objects.filter(
+            user=get_current_user()
+        )
+        self.fields["tags"].queryset = Tag.objects.filter(
+            user=get_current_user()
+        )
+
         for visible in self.visible_fields():
-            visible.field.widget.attrs["class"] = "form-input"
+            if not isinstance(visible.field, forms.ModelMultipleChoiceField):
+                visible.field.widget.attrs["class"] = "form-input"
 
     class Meta:
         model = Task
@@ -72,3 +89,14 @@ class ProjectForm(forms.ModelForm):
 
 class FilterForm(forms.Form):
     pass
+
+
+class TagForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        for visible in self.visible_fields():
+            visible.field.widget.attrs["class"] = "form-input"
+
+    class Meta:
+        model = Tag
+        fields = ("name",)

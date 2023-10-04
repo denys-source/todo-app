@@ -7,11 +7,13 @@ from todo.views import (
     ProjectListView,
     ProjectUpdateView,
     RegisterView,
+    TagUpdateView,
     TaskCreateView,
     TaskDetailView,
     TaskListView,
     TaskUpdateView,
     TaskDeleteView,
+    TagCreateView,
     tag_delete_view,
     toggle_completed_status,
     home_page_view,
@@ -33,9 +35,9 @@ urlpatterns = [
         "tasks/<int:pk>/detail/", TaskDetailView.as_view(), name="task-detail"
     ),
     path(
-        "tasks/<int:pk>/update-completed/",
+        "tasks/<int:pk>/toggle-completed/",
         toggle_completed_status,
-        name="task-update-completed",
+        name="task-toggle-completed",
     ),
     path("projects/", ProjectListView.as_view(), name="project-list"),
     path(
@@ -58,6 +60,8 @@ urlpatterns = [
         ProjectDeleteView.as_view(),
         name="project-delete",
     ),
+    path("tags/create/", TagCreateView.as_view(), name="tag-create"),
+    path("tags/<int:pk>/update/", TagUpdateView.as_view(), name="tag-update"),
     path("tags/<int:pk>/delete/", tag_delete_view, name="tag-delete"),
 ]
 

@@ -31,16 +31,27 @@
     </div>
   </form>
   <div class="tag-container">
-    <span class="text-bold">Tags:</span>
-    {% for tag in common_tags %}
-      <a href="?{% query_transform request tag=tag.name %}">{{ tag.name }}</a>
-      <a href="{% url 'todo:tag-delete' tag.pk %}">
-        <i class="fa-regular fa-circle-xmark"></i>
+    <div class="tag-container-items">
+      <span class="text-bold">Tags:</span>
+      {% for tag in common_tags %}
+        <a href="?{% query_transform request tag=tag.slug %}">{{ tag.name }}</a>
+        <a href="{% url 'todo:tag-update' tag.pk %}">
+          <i class="fa-solid fa-pen-to-square"></i>
+        </a>
+        <a href="{% url 'todo:tag-delete' tag.pk %}">
+          <i class="fa-regular fa-circle-xmark"></i>
+        </a>
+        {% if not forloop.last %},{% endif %}
+      {% empty %}
+        <span class="text-muted">no tags</span>
+      {% endfor %}
+    </div>
+    <div class="tag-container-controls">
+      <a class="action-link" href="{% url 'todo:tag-create' %}">
+        <i class="fa-solid fa-plus"></i>
+        Create tag
       </a>
-      {% if not forloop.last %},{% endif %}
-    {% empty %}
-      <span class="text-muted">no tags</span>
-    {% endfor %}
+    </div>
   </div>
   {% if task_list %}
     {% include "includes/task_container.html" %}
@@ -48,4 +59,3 @@
     <h1>You haven't created any tasks yet</h1>
   {% endif %}
 {% endblock content %}
-

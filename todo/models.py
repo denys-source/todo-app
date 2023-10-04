@@ -1,17 +1,18 @@
 from django.utils import timezone
+from django.utils.text import slugify
 from django.db import models
 from django.contrib.auth.models import AbstractUser
 
-from taggit.managers import TaggableManager
-from taggit.models import GenericTaggedItemBase, TagBase, slugify
-from crum import get_current_user
+from todo.middleware import get_current_user
 
 
 class User(AbstractUser):
     pass
 
 
-class UserInfoTag(TagBase):
+class Tag(models.Model):
+    name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=100)
     user = models.ForeignKey(
         User, related_name="tags", on_delete=models.CASCADE
     )
@@ -22,13 +23,8 @@ class UserInfoTag(TagBase):
         self.slug = slugify(self.name)
         return super().save(*args, **kwargs)
 
-
-class TaggedTask(GenericTaggedItemBase):
-    tag = models.ForeignKey(
-        UserInfoTag,
-        on_delete=models.CASCADE,
-        related_name="%(app_label)s_%(class)s_items",
-    )
+    def __str__(self) -> str:
+        return self.name
 
 
 class Project(models.Model):
@@ -59,7 +55,7 @@ class Task(models.Model):
     user = models.ForeignKey(
         User, related_name="tasks", on_delete=models.CASCADE
     )
-    tags = TaggableManager(blank=True, through=TaggedTask)
+    tags = models.ManyToManyField(Tag, related_name="tasks")
 
     class Meta:
         ordering = (

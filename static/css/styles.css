@@ -122,6 +122,11 @@ body {
   max-width: 300px;
 }
 
+/* Tag Form */
+.tag-form {
+  max-width: 300px;
+}
+
 /* Form Input */
 .form-input {
   background: #fafafa;
@@ -164,6 +169,8 @@ body {
 
 /* Tag Container */
 .tag-container {
+  display: flex;
+  justify-content: space-between;
   margin-bottom: 15px;
 }
 
@@ -193,6 +200,7 @@ body {
 /* Task Card Info */
 .task-card-info {
   display: flex;
+  gap: 10px;
   justify-content: space-between;
 }
 

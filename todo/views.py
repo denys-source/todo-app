@@ -26,10 +26,11 @@ from todo.forms import (
     ProjectForm,
     ProjectSearchForm,
     RegisterForm,
+    TagForm,
     TaskForm,
     TaskSearchForm,
 )
-from todo.models import Project, Task, UserInfoTag
+from todo.models import Project, Task, Tag
 
 
 def home_page_view(request: HttpRequest) -> HttpResponse:
@@ -86,7 +87,7 @@ class TaskListView(LoginRequiredMixin, ListView):
                 pass
 
         if tag_list := self.request.GET.getlist("tag"):
-            queryset = queryset.filter(tags__name__in=tag_list)
+            queryset = queryset.filter(tags__slug__in=tag_list)
 
         if query := self.request.GET.get("q"):
             queryset = queryset.filter(
@@ -192,9 +193,21 @@ class ProjectDeleteView(LoginRequiredMixin, OwnerRequiredMixin, DeleteView):
     success_url = reverse_lazy("todo:project-list")
 
 
+class TagCreateView(LoginRequiredMixin, CreateView):
+    model = Tag
+    form_class = TagForm
+    success_url = reverse_lazy("todo:task-list")
+
+
+class TagUpdateView(LoginRequiredMixin, OwnerRequiredMixin, UpdateView):
+    model = Tag
+    form_class = TagForm
+    success_url = reverse_lazy("todo:task-list")
+
+
 @login_required
 def tag_delete_view(request: HttpRequest, pk: int) -> HttpResponse:
-    tag = UserInfoTag.objects.get(pk=pk)
+    tag = Tag.objects.get(pk=pk)
     if request.user != tag.user:
         raise PermissionDenied()
     tag.delete()
