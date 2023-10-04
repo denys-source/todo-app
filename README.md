@@ -6,6 +6,10 @@ This application is designed to keep you organized and never miss a deadline aga
 
 https://todo-application-961s.onrender.com/
 
+Username: `mark`
+
+Password: `9zmyKbx6gTKXxdE`
+
 ## Installing
 
 Install `python3` and execute these commands:
