@@ -9,6 +9,7 @@ from django.db.models import Q, QuerySet
 from django import forms
 from django.http import HttpRequest, HttpResponse, HttpResponseBase
 from django.urls import reverse, reverse_lazy
+from django.utils.text import slugify
 from django.views.generic import (
     CreateView,
     DeleteView,
@@ -197,6 +198,13 @@ class TagCreateView(LoginRequiredMixin, CreateView):
     model = Tag
     form_class = TagForm
     success_url = reverse_lazy("todo:task-list")
+
+    def form_valid(self, form: TagForm) -> HttpResponse:
+        tag = form.save(commit=False)
+        tag.user = self.request.user
+        tag.slug = slugify(tag.name)
+        tag.save()
+        return super().form_valid(form)
 
 
 class TagUpdateView(LoginRequiredMixin, OwnerRequiredMixin, UpdateView):

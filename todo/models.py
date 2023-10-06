@@ -17,12 +17,6 @@ class Tag(models.Model):
         User, related_name="tags", on_delete=models.CASCADE
     )
 
-    def save(self, *args, **kwargs):
-        user = get_current_user()
-        self.user = user
-        self.slug = slugify(self.name)
-        return super().save(*args, **kwargs)
-
     def __str__(self) -> str:
         return self.name
 
