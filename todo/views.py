@@ -134,8 +134,12 @@ def toggle_completed_status(request, pk: int) -> HttpResponse:
             raise PermissionDenied()
         task.completed = not task.completed
         task.save()
-        return redirect(request.META.get("HTTP_REFERER", ""))
-    return redirect(request.META.get("HTTP_REFERER", ""))
+        return redirect(
+            request.META.get("HTTP_REFERER", reverse("todo:task-list"))
+        )
+    return redirect(
+        request.META.get("HTTP_REFERER", reverse("todo:task-list"))
+    )
 
 
 class ProjectListView(LoginRequiredMixin, ListView):
