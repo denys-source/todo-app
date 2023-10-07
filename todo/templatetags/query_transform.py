@@ -11,5 +11,5 @@ def query_transform(request, **kwargs) -> str:
         if value:
             params[param] = value
         else:
-            del params[param]
+            params.pop(param, 0)
     return params.urlencode()
