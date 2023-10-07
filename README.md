@@ -12,14 +12,26 @@ Password: `9zmyKbx6gTKXxdE`
 
 ## Installing
 
-Install `python3` and execute these commands:
+Linux/MacOS
 ```shell
 git clone https://github.com/denys-source/todo-app.git
 cd todo-app/
 python3 -m venv venv
 source venv/bin/activate
 pip3 install -r requirements.txt
+python3 manage.py migrate
 python3 manage.py runserver
+```
+
+Windows
+```shell
+git clone https://github.com/denys-source/todo-app.git
+cd todo-app 
+python venv venv
+venv\Scripts\activate
+pip install -r requirements.txt
+python manage.py migrate
+python manage.py runserver
 ```
 
 ## Features
