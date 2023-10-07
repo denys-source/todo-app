@@ -1,6 +1,6 @@
 {% extends "base.html" %}
 {% block content %}
-  <div class="task-main-content">
+  <div class="task-detail-main-content">
     <h1>{{ task.title }}</h1>
     <div class="task-description">
       {% if task.description %}
@@ -10,7 +10,7 @@
       {% endif %}
     </div>
   </div>
-  <div class="task-content-right">
+  <div class="task-detail-content-right">
     <div class="info-item">
       <div class="info-item-name">Project</div>
       <div class="info-item-value">

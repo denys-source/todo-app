@@ -7,25 +7,21 @@ html {
   box-sizing: border-box;
 }
 
-/* Typography */
 h1 {
   margin-top: 0;
 }
 
-/* Lists */
 ul {
   list-style-type: square;
   padding: 15px;
   margin: 0;
 }
 
-/* Links */
 a {
   text-decoration: none;
   color: #dc4c3e;
 }
 
-/* Body and Layout */
 body {
   display: flex;
   flex-direction: column;
@@ -110,24 +106,20 @@ body {
   max-width: 150px;
 }
 
-/* Search Form */
 .search-form {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
-/* Project Form */
 .project-form {
   max-width: 300px;
 }
 
-/* Tag Form */
 .tag-form {
   max-width: 300px;
 }
 
-/* Form Input */
 .form-input {
   background: #fafafa;
   box-sizing: border-box;
@@ -136,12 +128,10 @@ body {
   width: 100%;
 }
 
-/* Form Group */
 .form-group {
   margin-bottom: 1rem;
 }
 
-/* Form Button */
 .form-button {
   background-color: #bdbdbd;
   border: 1px solid #ddd;
@@ -156,7 +146,6 @@ body {
   background-color: #dc4c3e;
 }
 
-/* Form Button Warning */
 .form-button-warning {
   color: #fff;
   background-color: #c20404;
@@ -167,14 +156,12 @@ body {
   background-color: #b00505;
 }
 
-/* Tag Container */
 .tag-container {
   display: flex;
   justify-content: space-between;
   margin-bottom: 15px;
 }
 
-/* Task Container */
 .task-container {
   display: inline-block;
   max-height: 500px;
@@ -189,7 +176,14 @@ body {
   min-width: 300px;
 }
 
-/* Task Card Main */
+.task-card:hover {
+  background-color: #f2f2f2;
+}
+
+.task-card:hover .task-card-controls {
+  visibility: visible;
+}
+
 .task-card-main {
   display: flex;
   justify-content: space-between;
@@ -197,7 +191,6 @@ body {
   margin-bottom: 5px;
 }
 
-/* Task Card Info */
 .task-card-info {
   display: flex;
   gap: 10px;
@@ -210,7 +203,6 @@ body {
   min-width: 100px;
 }
 
-/* Project Card Link */
 .project-card-link {
   display: block;
   padding: 15px 20px;
@@ -222,37 +214,32 @@ body {
   background-color: #dbd9d9;
 }
 
-/* Project Card Not Last of Type */
 .project-card:not(:last-of-type) {
   margin-bottom: 10px;
 }
 
-/* Task Card Not Last of Type */
 .task-card:not(:last-of-type) {
   margin-bottom: 10px;
 }
 
-/* Task Card Controls */
 .task-card-controls {
+  visibility: hidden;
   display: flex;
   gap: 10px;
 }
 
-/* Task List Controls */
 .task-list-controls {
   display: flex;
   gap: 10px;
   margin-bottom: 15px;
 }
 
-/* Task List Controls Input Type Date */
 .task-list-controls input[type=date] {
   height: 100%;
   background-color: #f2f0f0;
   border: none;
 }
 
-/* Project List Controls */
 .project-list-controls {
   display: flex;
   align-items: center;
@@ -260,7 +247,6 @@ body {
   margin-bottom: 15px;
 }
 
-/* Project Detail Header */
 .project-detail-header {
   display: flex;
   align-items: center;
@@ -272,7 +258,6 @@ body {
   margin-bottom: 0;
 }
 
-/* Project Detail Controls */
 .project-detail-controls {
   display: flex;
   align-items: center;
@@ -283,7 +268,6 @@ body {
   margin: 0;
 }
 
-/* Action Link */
 .action-link {
   background-color: #f2f0f0;
   padding: 10px 20px;
@@ -293,42 +277,35 @@ body {
   background-color: #dbd9d9;
 }
 
-/* Task Main Content */
-.task-main-content {
+.task-detail-main-content {
   height: 100%;
   min-width: 40%;
   float: left;
 }
 
-/* Task Content Right */
-.task-content-right {
+.task-detail-content-right {
   height: 100%;
   min-width: 15%;
   margin-left: 5%;
   float: left;
 }
 
-/* Task Description */
 .task-description {
   color: #787878;
 }
 
-/* Info Item Not Last of Type */
 .info-item:not(:last-of-type) {
   margin-bottom: 10px;
 }
 
-/* Info Item Name */
 .info-item-name {
   color: #787878;
 }
 
-/* Completed */
 .completed {
   text-decoration: line-through;
 }
 
-/* Sidebar Controls */
 .sidebar-controls {
   display: flex;
   align-items: center;
@@ -336,17 +313,14 @@ body {
   margin: 10px 0;
 }
 
-/* Text Muted */
 .text-muted {
   color: #787878;
 }
 
-/* Text Bold */
 .text-bold {
   font-weight: bold;
 }
 
-/* Checkbox Styles */
 /* checkbox css */
 .checkbox-circle input[type="checkbox"] {
   display: none;
