@@ -10,7 +10,7 @@ from todo.forms import TaskForm
 class TestForms(TestCase):
     @classmethod
     def setUpTestData(cls):
-        test_user = get_user_model().objects.create_user(  # type: ignore
+        test_user = get_user_model().objects.create_user(
             username="test_user", password="test_password"
         )
         for project_id in range(1, 11):
@@ -36,8 +36,8 @@ class TestForms(TestCase):
             user_tags = Tag.objects.filter(user=test_user)
 
             self.assertEqual(
-                list(test_form.fields["project"].queryset), list(user_projects)  # type: ignore
+                list(test_form.fields["project"].queryset), list(user_projects)
             )
             self.assertEqual(
-                list(test_form.fields["tags"].queryset), list(user_tags)  # type: ignore
+                list(test_form.fields["tags"].queryset), list(user_tags)
             )

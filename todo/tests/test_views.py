@@ -8,11 +8,11 @@ from todo.models import Project, Tag, Task
 class TestViews(TestCase):
     @classmethod
     def setUpTestData(cls) -> None:
-        test_user_1 = get_user_model().objects.create_user(  # type: ignore
+        test_user_1 = get_user_model().objects.create_user(
             username="test_user_1", password="test_password"
         )
 
-        test_user_2 = get_user_model().objects.create_user(  # type: ignore
+        test_user_2 = get_user_model().objects.create_user(
             username="test_user_2", password="test_password"
         )
 
