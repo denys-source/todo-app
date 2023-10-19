@@ -1,5 +1,5 @@
+import re
 from datetime import timedelta
-from datetime import datetime
 from typing import Any
 
 from django.contrib.auth import login
@@ -80,12 +80,10 @@ class TaskListView(LoginRequiredMixin, ListView):
             user=self.request.user
         )
 
-        if date_string := self.request.GET.get("date"):
-            try:
-                date_obj = datetime.strptime(date_string, "%Y-%m-%d")
-                queryset = queryset.filter(due_date=date_obj)
-            except ValueError:
-                pass
+        if (date := self.request.GET.get("date")) and re.fullmatch(
+            r"^\d{4}\-(0?[1-9]|1[012])\-(0?[1-9]|[12][0-9]|3[01])$", date
+        ):
+            queryset = queryset.filter(due_date=date)
 
         if tag_list := self.request.GET.getlist("tag"):
             queryset = queryset.filter(tags__slug__in=tag_list)
