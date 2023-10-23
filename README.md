@@ -42,4 +42,5 @@ python manage.py runserver
 
 ## Demo
 
-![image](https://github.com/denys-source/todo-app/assets/72623693/4364788d-c0b7-4fdc-9869-e15ca89d4812)
+![image](https://github.com/denys-source/todo-app/assets/72623693/5ff9ab83-f93f-4973-88d2-b086f22fda19)
+
