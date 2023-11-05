@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>{{ task|yesno:"Update,Create" }} task</h1>
+  <form class="task-form" action="" method="post">
+    {% csrf_token %}
+    {% for field in form %}
+      <div class="form-group">
+        {{ field.label_tag }}
+        {{ field }}
+        {{ field.help_text }}
+      </div>
+    {% endfor %}
+    <input class="form-button"
+           type="submit"
+           value="{{ task|yesno:'Update,Create' }}">
+  </form>
+{% endblock content %}
+

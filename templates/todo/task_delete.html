@@ -1,0 +1,9 @@
+{% extends "base.html" %}
+{% block content %}
+  <h1>Delete "{{ task.title }}" task?</h1>
+  <form class="delete-form" action="" method="post">
+    {% csrf_token %}
+    <input class="form-button form-button-warning" type="submit" value="Delete">
+  </form>
+{% endblock content %}
+
